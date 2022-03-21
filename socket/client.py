@@ -1,12 +1,15 @@
 from socket import *
 
+port = 8080
+
 clientSock = socket(AF_INET, SOCK_STREAM)
-clientSock.connect(('127.0.0.1', 8080))
+clientSock.connect(('127.0.0.1', port))
 
 print('연결 확인 됐습니다.')
-msg = 'I am a client'
-clientSock.send(msg.encode('utf-8'))
-print('메시지를 전송했습니다.')
 
-data = clientSock.recv(1024)
-print('받은 데이터 : ', data.decode('utf-8'))
+while True:
+    recvData = clientSock.recv(1024)
+    print('받은 데이터 : ', recvData.decode('utf-8'))
+
+    sendData = input('>>>')
+    clientSock.send(sendData.encode('utf-8'))
