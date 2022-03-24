@@ -40,7 +40,7 @@ def handle(client):
 def receive(): 
     while True: 
         client, address = serverSock.accept() 
-        print("Connected with {}".format(str(address))) 
+        print("Connected with {}".format(str(address)))
         client.send('NICKNAME'.encode('utf-8')) 
         nickname = client.recv(1024).decode('utf-8') 
         nicknames.append(nickname) 
